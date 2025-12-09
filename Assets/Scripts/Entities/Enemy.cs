@@ -47,25 +47,25 @@ namespace SpaceGame
 
         public override void Move(int _speed)
         {
-            transform.Translate(Vector2.right * _speed * Time.deltaTime);
+            // GetComponent<Rigidbody2D>().linearVelocity = (Vector2)transform.up * speed * Time.deltaTime;
+            transform.Translate(Vector2.up * speed * Time.deltaTime);
         }
 
         public override void Move(Vector2 _direction)
         {
-            Vector2 direction = _direction - (Vector2)transform.position;
-            direction.Normalize();
+            // Vector2 direction = _direction - (Vector2)transform.position;
 
             _direction.x -= transform.position.x;
             _direction.y -= transform.position.y;
 
             float angle = Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0, 0, angle - 90);
-            // transform.Translate(Vector2.up * speed * Time.deltaTime);
+            transform.Translate(Vector2.up * speed * Time.deltaTime);
 
             
             // float angle = Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg;
             // transform.rotation = Quaternion.Euler(0, 0, angle - 90);
-            GetComponent<Rigidbody2D>().linearVelocity = direction * speed * Time.deltaTime;
+            // GetComponent<Rigidbody2D>().linearVelocity = direction * speed * Time.deltaTime;
         }
 
         public override void Shoot()

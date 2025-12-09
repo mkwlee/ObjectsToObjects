@@ -162,7 +162,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: -712631045867808456, guid: b670ab75dde984907b8570040daa08c5, type: 3}
   m_Color: {r: 0.72156864, g: 0.36862746, b: 0, a: 1}
   m_FlipX: 0
@@ -249,9 +249,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: -712631045867808456, guid: b670ab75dde984907b8570040daa08c5, type: 3}
-  m_Color: {r: 0.72156864, g: 0.36862746, b: 0, a: 1}
+  m_Color: {r: 0.36862746, g: 0.24313727, b: 0.09019608, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -360,9 +360,9 @@ GameObject:
   - component: {fileID: 8813878764908042488}
   - component: {fileID: 6275537438697370497}
   - component: {fileID: 9198015767164086070}
-  - component: {fileID: 8576890481068892014}
+  - component: {fileID: 5072530945962505563}
   m_Layer: 0
-  m_Name: EnemyShooter
+  m_Name: EnemyMachineGunner
   m_TagString: Damageable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -523,7 +523,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &8576890481068892014
+--- !u!114 &5072530945962505563
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -532,15 +532,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 4341568973848378559}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cf4476c71838c046bebe403b90c7982, type: 3}
+  m_Script: {fileID: 11500000, guid: 1a0b0fbe2e732fc48bcbc679913d4c05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 10
-  maxSpeed: 300
+  maxSpeed: 3
   weaponName: Laser
-  weaponDamage: 10
-  weaponSpeed: 5
-  attackRange: 10
+  weaponDamage: 1
+  weaponSpeed: 10
+  circleRange: 10
+  attackRange: 15
   attackTime: 1
   bulletPrefab: {fileID: 7807295524294740522, guid: 85440da79ce4b8046a431402ab3ea011, type: 3}
 --- !u!1 &6598561203207995436
