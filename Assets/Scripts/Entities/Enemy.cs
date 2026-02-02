@@ -1,6 +1,7 @@
 using SpaceGame;
 using UnityEditor.Build;
 using UnityEngine;
+using UnityEngine.VFX;
 
 namespace SpaceGame
 {
@@ -15,6 +16,9 @@ namespace SpaceGame
         [SerializeField] protected string weaponName;
         [SerializeField] protected int weaponDamage;
         [SerializeField] protected int weaponSpeed;
+
+        [Header("MISC")]
+        [SerializeField] protected VisualEffectAsset deathEffect;
         protected Transform target;
         protected int speed;
         private EnemyType enemyType;
@@ -80,6 +84,7 @@ namespace SpaceGame
 
         public override void Die()
         {
+            Instantiate(deathEffect, transform.position, Quaternion.identity);
             GameManager.GetInstance().NotifyDeath(this);
             Destroy(gameObject);
         }

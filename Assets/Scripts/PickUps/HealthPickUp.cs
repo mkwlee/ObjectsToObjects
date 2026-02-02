@@ -11,10 +11,13 @@ namespace SpaceGame
 
         public override void OnPicked()
         {
-            base.OnPicked();
             int health = Random.Range(healthMin, healthMax);
+            
+            Player player = GameManager.GetInstance().GetPlayer();
+            player.health.AddHealth(health);
 
             Debug.Log("Added health to player");
+            base.OnPicked();
         }
 
         public void GetDamage(int damage)

@@ -13,9 +13,16 @@ namespace SpaceGame
         public UnityEvent OnScoreUpdate;
         public UnityEvent OnHighScoreUpdate;
 
+        private void Start()
+        {
+            highScore = PlayerPrefs.GetInt("HighScore", 0);
+            GameManager.GetInstance().onGameStart += OnGameStart;
+        }
+
         private void OnGameStart()
         {
             score = 0;
+            OnHighScoreUpdate?.Invoke();
         }
 
         public void SetHighScore()

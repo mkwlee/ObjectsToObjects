@@ -27,7 +27,7 @@ namespace SpaceGame
         public void SpawnPickup(Vector2 position)
         {
             if (pickupPool.Count <= 0)
-                return;
+                return; 
             
             if (Random.Range(0.01f, 1.0f) < pickupProbability)
             {

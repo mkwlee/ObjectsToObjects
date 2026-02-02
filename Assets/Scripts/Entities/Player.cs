@@ -15,6 +15,8 @@ namespace SpaceGame
 
         private Rigidbody2D playerRB;
 
+        public Shield currentShield { get; private set; }
+
         private void Awake()
         {
             health = new Health(200, 1);
@@ -66,6 +68,11 @@ namespace SpaceGame
             {
                 Die();
             }
+        }
+
+        public void SetShield(Shield shield)
+        {
+            currentShield = shield;
         }
 
     }

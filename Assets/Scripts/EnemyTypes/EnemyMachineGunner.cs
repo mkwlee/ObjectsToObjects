@@ -9,6 +9,7 @@ namespace SpaceGame
         [SerializeField] private float circleRange;
         [SerializeField] private float attackRange;
         [SerializeField] private int attackTime;
+        [SerializeField] private int attackInterval;
 
         [SerializeField] private Bullet bulletPrefab;
         
@@ -27,7 +28,6 @@ namespace SpaceGame
         {
             base.Start();
         }
-
 
         protected override void Update()
         {
@@ -56,10 +56,9 @@ namespace SpaceGame
                         enemyState = EnemyStates.Follow;
                     }
 
-                    if (timer > 3)
+                    if (timer > attackInterval)
                     {
                         enemyState = EnemyStates.Shooting;
-                        // Shoot();
                         timer = 0;
                         bulletCount = 0f;
                     }
@@ -82,20 +81,6 @@ namespace SpaceGame
                     }
                     break;
             }
-
-            // base.Update();
-
-            
-
-            // if (Vector2.Distance(transform.position, target.position) < attackRange)
-            // {
-            //     speed = 0;
-            //     Shoot();
-            // }
-            // else
-            // {
-            //     speed = maxSpeed;
-            // }
         }
 
         private void CircleMovement(Vector2 _direction)

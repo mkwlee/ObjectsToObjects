@@ -21,10 +21,16 @@ namespace SpaceGame
         public PickupManager pickupManager;
         public ScoreManager scoreManager;
 
+        public UiManager uiManager;
+
         private Player player;
         private GameObject tempEnemy;
         private bool isEnemySpawning;
-        private Weapon meleeWeapon = new Weapon("Melee", 1, 0);
+        private float powerUpTimer = 0f;
+
+        public Action<int> timerInterval;
+        public Action<int> powerUpStarted;
+        public Action powerUpEnded;
 
         /// <summary>
         /// Singleton GameManager to manage game state and transitions
@@ -51,28 +57,16 @@ namespace SpaceGame
             SetSingleton();
             // DontDestroyOnLoad(this.gameObject);
         }
-
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
-        // void Start()
-        // {
-        //     isEnemySpawning = true;
-        //     FindPlayers();
-        //     StartCoroutine(EnemySpawner());
-        
-        // }
-
-        // Update is called once per frame
-        void Update()
-        {
-            
-        }
-
+    
         IEnumerator EnemySpawner()
         {
             while (isEnemySpawning)
             {
                 yield return new WaitForSeconds(1 / enemySpawnRate);
-                CreateEnemy();
+                if (isEnemySpawning)
+                {
+                    CreateEnemy();
+                }
             }
         }
 
@@ -136,6 +130,7 @@ namespace SpaceGame
 
         IEnumerator GameStopper()
         {
+            print("Game Over");
             isEnemySpawning = false;
             yield return new WaitForSeconds(2.0f);
             isPlaying = false;
@@ -151,6 +146,40 @@ namespace SpaceGame
             }
 
             onGameOver?.Invoke();
+        }
+
+        void Update()
+        {
+            if (powerUpTimer > 0f)
+            {
+                powerUpTimer -= Time.deltaTime; // Each frame, reduce the timer by the time passed since last frame
+                if (uiManager.currentTimer != Mathf.CeilToInt(powerUpTimer))
+                {
+                    timerInterval?.Invoke(Mathf.CeilToInt(powerUpTimer));
+
+                }
+                if (powerUpTimer < 0f)
+                {
+                    powerUpTimer = 0f;
+                    powerUpEnded?.Invoke(); // Invoke the event to signal that the power-up has ended
+                }
+            }
+            
+        }
+
+        public void SetPowerUpTimer(float time)
+        {
+            powerUpTimer = time; // Timer is set to time, counting down until it runs out.
+            powerUpStarted?.Invoke(Mathf.RoundToInt(powerUpTimer)); // Invoke the event to signal that the power-up has started
+        }
+
+        public void ActivatecNuke()
+        {
+            foreach (Enemy item in FindObjectsByType(typeof(Enemy), FindObjectsSortMode.InstanceID))
+            {
+                Destroy(item.gameObject); //Not die so you can't chain pickups
+                scoreManager.IncrementScore();
+            }
         }
 
     }
