@@ -45,6 +45,7 @@ namespace SpaceGame
 
             cameraShakePriority = priority;
             transform.DOKill();
+            transform.DOShakeRotation(duration, strength, vibrato, 1, false);
             transform.DOShakePosition(duration, strength, vibrato, 1, false).OnComplete(() => {
                 cameraShakePriority = 0;
             });

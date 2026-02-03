@@ -17,7 +17,7 @@ namespace SpaceGame
         [SerializeField] private GameObject explosionEffect;
         [SerializeField] private bool isGrenade = false;
         private SpriteRenderer spriteRenderer;
-        private Color regularColor = new Color(255, 231, 0, 255);
+        private Color regularColor = new Color32(255, 231, 0, 255);
 
         enum EnemyStates
         {

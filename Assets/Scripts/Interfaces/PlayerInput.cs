@@ -51,12 +51,14 @@ namespace SpaceGame
         {
             holdingShoot = true;
             player.isShootingMachineGun = true;
+            player.gameObject.GetComponent<SpriteRenderer>().DOColor(new Color32(138, 0, 196, 255), 0.2f);
         }
 
         public void UnsetHoldingShoot()
-        {
+        {   
             holdingShoot = false;
             player.isShootingMachineGun = false;
+            player.gameObject.GetComponent<SpriteRenderer>().DOColor(new Color32(9, 0, 255, 255), 0.2f);
         }
     }
 }

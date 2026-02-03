@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickUpEffect: {fileID: 5955681378705746858, guid: bf401757252a75d42be563578b1c8f29, type: 3}
-  healthMin: 10
+  healthMin: 30
   healthMax: 30
 --- !u!50 &3989438763544636454
 Rigidbody2D:

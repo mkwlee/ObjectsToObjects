@@ -23,7 +23,7 @@ namespace SpaceGame
 
         private void Awake()
         {
-            health = new Health(200, 1);
+            health = new Health(100, 1);
         }
 
         private void Start()

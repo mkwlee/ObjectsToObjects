@@ -223,7 +223,7 @@ namespace SpaceGame
                 scoreManager.IncrementScore(10);
             }
 
-            cameraManager.ShakeCamera(3f, 5f, 8, 7);
+            cameraManager.ShakeCamera(2f, 5f, 8, 7);
         }
 
         public void QuitGame()
