@@ -49,7 +49,7 @@ namespace SpaceGame
                     }
                     break;
                 case ChargeState.Preparing:
-                    if (timer > 1)
+                    if (timer > 0.1)
                     {
                         enemyPhase = ChargeState.Charging;
                         speed = maxSpeed*3;
@@ -74,7 +74,7 @@ namespace SpaceGame
                     }
                     break;
                 case ChargeState.Cooldown:
-                    if (timer > 1)
+                    if (timer > 0.5)
                     {
                         enemyPhase = ChargeState.Follow;
                         speed = maxSpeed;

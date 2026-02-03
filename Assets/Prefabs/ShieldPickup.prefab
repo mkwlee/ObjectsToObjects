@@ -385,6 +385,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccc6a2b31075a4a4e851c4693299077a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickUpEffect: {fileID: 5955681378705746858, guid: bf401757252a75d42be563578b1c8f29, type: 3}
   shieldPrefab: {fileID: 2405677640807156479, guid: 328a1a0fd66f087468eb1d867abf2ba9, type: 3}
 --- !u!1 &3970115211820328619
 GameObject:

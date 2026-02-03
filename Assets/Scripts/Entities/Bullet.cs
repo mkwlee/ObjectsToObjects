@@ -8,6 +8,7 @@ namespace SpaceGame
         private int damage;
         private int speed;
         private string targetTag;
+        [SerializeField] protected GameObject bulletEffect;
 
 
         public void SetBullet(int _damage, string _targetTag, int _speed = 30)
@@ -31,6 +32,8 @@ namespace SpaceGame
         {
             
             damageable.GetDamage(damage);
+            GameObject bulletVFX = Instantiate(bulletEffect, transform.position, Quaternion.identity);
+            Destroy(bulletVFX, 1f);
 
             GameManager.GetInstance()?.scoreManager.IncrementScore();
             Destroy(gameObject);

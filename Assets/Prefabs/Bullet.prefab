@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2257542666093222388
+--- !u!1 &3625906463393248432
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4707345996342822020}
-  - component: {fileID: 436788006493431980}
+  - component: {fileID: 4109333014901859268}
+  - component: {fileID: 7321421589165338450}
   m_Layer: 0
-  m_Name: Audio Source
+  m_Name: player_shoot_randomizer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4707345996342822020
+--- !u!4 &4109333014901859268
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2257542666093222388}
+  m_GameObject: {fileID: 3625906463393248432}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -32,18 +32,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5392683314650882492}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &436788006493431980
+--- !u!82 &7321421589165338450
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2257542666093222388}
+  m_GameObject: {fileID: 3625906463393248432}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 2cc715ef8031c8e46b5ef98415eabe5f, type: 3}
+  m_Resource: {fileID: 6418180475301049370, guid: 84967692261dce249892ab3922d0dc19, type: 2}
   m_PlayOnAwake: 1
   m_Volume: 0.2
   m_Pitch: 1
@@ -206,7 +206,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2135585597343286014, guid: 5aa8b770bc43046bc8d993d0d5b7f4a5, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.03529412, g: 0, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -293,7 +293,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2135585597343286014, guid: 5aa8b770bc43046bc8d993d0d5b7f4a5, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.03529412, g: 0, b: 0.9960785, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -337,7 +337,7 @@ Transform:
   m_Children:
   - {fileID: 8007775985853019520}
   - {fileID: 427925697608406940}
-  - {fileID: 4707345996342822020}
+  - {fileID: 4109333014901859268}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5472077528896586387
@@ -443,3 +443,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63e6bc08b4bfed94095d1c041f070a5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletEffect: {fileID: 1820334360911021277, guid: be0dc43297d64024595b9300a8927241, type: 3}

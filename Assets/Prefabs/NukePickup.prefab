@@ -293,8 +293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c602cc6ed66ec444801ceef36bc3b8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthMin: 1
-  healthMax: 5
+  pickUpEffect: {fileID: 5955681378705746858, guid: bf401757252a75d42be563578b1c8f29, type: 3}
 --- !u!1 &6745286794403443438
 GameObject:
   m_ObjectHideFlags: 0

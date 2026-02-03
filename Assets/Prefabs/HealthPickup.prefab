@@ -102,6 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54ce46a8efa13c445bf1be056e803286, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickUpEffect: {fileID: 5955681378705746858, guid: bf401757252a75d42be563578b1c8f29, type: 3}
   healthMin: 1
   healthMax: 5
 --- !u!60 &3389704794079679277

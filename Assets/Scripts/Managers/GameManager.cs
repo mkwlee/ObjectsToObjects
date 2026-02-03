@@ -13,6 +13,7 @@ namespace SpaceGame
 
         [Header("Game Variables")]
         [SerializeField] private float enemySpawnRate = 0.5f;
+        private float enemySpawnCount = 0;
 
         public Action onGameStart;
         public Action onGameOver;
@@ -66,6 +67,7 @@ namespace SpaceGame
                 if (isEnemySpawning)
                 {
                     CreateEnemy();
+                    enemySpawnCount++;
                 }
             }
         }
@@ -164,7 +166,15 @@ namespace SpaceGame
                     powerUpEnded?.Invoke(); // Invoke the event to signal that the power-up has ended
                 }
             }
-            
+
+            if (enemySpawnCount > 5)
+            {
+                if(UnityEngine.Random.Range(0, 10) < enemySpawnCount+2 - 5)
+                {
+                    enemySpawnRate += 0.1f;
+                    enemySpawnCount = 0;
+                }
+            }
         }
 
         public void SetPowerUpTimer(float time)

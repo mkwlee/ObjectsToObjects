@@ -102,6 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 641e99ceb7466004fa57b1aa02c865d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickUpEffect: {fileID: 5955681378705746858, guid: bf401757252a75d42be563578b1c8f29, type: 3}
   powerUpDuration: 5
 --- !u!60 &465604153743887845
 PolygonCollider2D:

@@ -18,7 +18,8 @@ namespace SpaceGame
         [SerializeField] protected int weaponSpeed;
 
         [Header("MISC")]
-        [SerializeField] protected VisualEffectAsset deathEffect;
+        [SerializeField] protected GameObject deathEffect;
+        [SerializeField] protected AudioSource hitSound;
         protected Transform target;
         protected int speed;
         private EnemyType enemyType;
@@ -84,7 +85,9 @@ namespace SpaceGame
 
         public override void Die()
         {
-            Instantiate(deathEffect, transform.position, Quaternion.identity);
+            GameObject deathVFX = Instantiate(deathEffect, transform.position, Quaternion.identity);
+            Destroy(deathVFX, 2.5f);
+
             GameManager.GetInstance().NotifyDeath(this);
             Destroy(gameObject);
         }
@@ -92,6 +95,7 @@ namespace SpaceGame
         public override void GetDamage(int damage)
         {
             health.DeductHealth(damage);
+            hitSound.Play();
             if (health.GetHealth() <= 0)
             {
                 Die();

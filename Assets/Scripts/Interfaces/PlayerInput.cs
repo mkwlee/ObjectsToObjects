@@ -9,6 +9,8 @@ namespace SpaceGame
         private Vector2 lookTarget;
 
         private bool holdingShoot = false;
+        private float shootDelay = 0f;
+        private const float shootInterval = 0.1f;
 
         private void Start()
         {
@@ -23,14 +25,20 @@ namespace SpaceGame
             vertical = Input.GetAxis("Vertical");
             lookTarget = Input.mousePosition;
 
+            shootDelay += Time.deltaTime;
             if (holdingShoot == false && Input.GetMouseButtonDown(0))
             {
+                if (shootDelay < shootInterval) return;
+                shootDelay = 0f;
                 player.Shoot();
             }
             else if (holdingShoot == true && Input.GetMouseButton(0))
             {
+                if (shootDelay < shootInterval) return;
+                shootDelay = 0f;
                 player.Shoot();
             }
+            
         }
 
         void FixedUpdate()
