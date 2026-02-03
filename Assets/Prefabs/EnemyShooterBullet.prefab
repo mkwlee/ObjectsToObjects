@@ -28,8 +28,8 @@ Transform:
   m_GameObject: {fileID: 5859589287642821644}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.1, z: 0}
-  m_LocalScale: {x: 0.3179, y: 0.3179, z: 0.3179}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -78,8 +78,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
-  m_Color: {r: 1, g: 0, b: 0.375, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 48d17858761cf7446b51d4e26b1263b9, type: 3}
+  m_Color: {r: 0.9843137, g: 0.4509804, b: 0.5647059, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -126,8 +126,8 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.28866667}
-    oldSize: {x: 1, y: 1}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.56, y: 2.56}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -151,4 +151,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63e6bc08b4bfed94095d1c041f070a5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletEffect: {fileID: 1820334360911021277, guid: 0fdab5279b47e8f4c871c04c2137fb58, type: 3}
+  bulletEffect: {fileID: 1820334360911021277, guid: e43e27c80f4daff4f800094d9b76ed35, type: 3}

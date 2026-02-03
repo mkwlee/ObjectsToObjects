@@ -7,6 +7,8 @@ namespace SpaceGame
     {
 
         [SerializeField] public int shieldHealth;
+        [SerializeField] private AudioSource shieldHitSound;
+        [SerializeField] private GameObject shieldBreakEffect;
 
         protected void Start()
         {
@@ -20,8 +22,11 @@ namespace SpaceGame
         public override void GetDamage(int damage)
         {
             health.DeductHealth(damage);
+            shieldHitSound.Play();
             if (health.GetHealth() <= 0)
             {
+                GameObject breakVFX = Instantiate(shieldBreakEffect, transform.position, Quaternion.identity);
+                Destroy(breakVFX, 2.5f);
                 Die();
             }
         }

@@ -129,6 +129,38 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &2092455861745534393
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6596843557416508398}
+  m_Layer: 0
+  m_Name: Trail
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6596843557416508398
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2092455861745534393}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.826, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7241376684857386472}
+  m_Father: {fileID: 7670602933787306855}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3585556507413307176
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,7 +173,7 @@ GameObject:
   - component: {fileID: 7760574827666806641}
   - component: {fileID: 7485226299953086627}
   - component: {fileID: 5143338362528518877}
-  - component: {fileID: 2199652538315027084}
+  - component: {fileID: 323579278453452303}
   m_Layer: 0
   m_Name: EnemyMelee
   m_TagString: Damageable
@@ -163,8 +195,8 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5513376250241192331}
-  - {fileID: 7241376684857386472}
   - {fileID: 7615125147434922686}
+  - {fileID: 6596843557416508398}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7760574827666806641
@@ -211,8 +243,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4efd218fccb78e44ba4581344fe50544, type: 3}
-  m_Color: {r: 0.27450982, g: 0.76470596, b: 0.29803923, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 322bfe8b535190043807c1fea82a3afe, type: 3}
+  m_Color: {r: 0.8588236, g: 0.9843138, b: 0.45098042, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -268,9 +300,9 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.014168022, y: 1.2078359}
-      - {x: -0.8738674, y: -1.2213731}
-      - {x: 0.8727414, y: -1.2320321}
+    - - {x: 0.00808361, y: 0.80626464}
+      - {x: -0.6487441, y: -0.78329533}
+      - {x: 0.67804027, y: -0.80003875}
   m_UseDelaunayMesh: 0
 --- !u!50 &5143338362528518877
 Rigidbody2D:
@@ -298,8 +330,8 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!114 &2199652538315027084
+  m_Constraints: 7
+--- !u!114 &323579278453452303
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -308,19 +340,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 3585556507413307176}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f36d216144d205e4dbae499a10a5093a, type: 3}
+  m_Script: {fileID: 11500000, guid: 92fed2d4924b38548aef35722e0cdab9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 15
-  maxSpeed: 10
-  weaponName: Lance
-  weaponDamage: 15
+  maxSpeed: 5
+  weaponName: Spike
+  weaponDamage: 5
   weaponSpeed: 0
-  deathEffect: {fileID: 1820334360911021277, guid: 859e0010a9d097441996bc421ae9f686, type: 3}
+  deathEffect: {fileID: 1820334360911021277, guid: 51e83f1fcc4755846af451eb9a0f2d41, type: 3}
   hitSound: {fileID: 2543793189074293453}
-  chargeRange: 60
-  attackRange: 3
-  attackTime: 1
+  attackRange: 2
+  coolDown: 1
+  hitEffect: {fileID: 1820334360911021277, guid: 5b0f3fc155515e947932320d75398b80, type: 3}
 --- !u!1 &8064801077112569596
 GameObject:
   m_ObjectHideFlags: 0
@@ -347,12 +379,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8064801077112569596}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.57, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7670602933787306855}
+  m_Father: {fileID: 6596843557416508398}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!2083052967 &5300114591033049456
 VisualEffect:
@@ -362,7 +394,7 @@ VisualEffect:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8064801077112569596}
   m_Enabled: 1
-  m_Asset: {fileID: 8926484042661614526, guid: 7bb2cb10ce4d8ca43a165d1737fcba24, type: 3}
+  m_Asset: {fileID: 8926484042661614526, guid: 51000069ac694624a855b21d989bb2e6, type: 3}
   m_InitialEventName: OnPlay
   m_InitialEventNameOverriden: 0
   m_StartSeed: 0
@@ -387,7 +419,39 @@ VisualEffect:
     m_AnimationCurve:
       m_Array: []
     m_Gradient:
-      m_Array: []
+      m_Array:
+      - m_Value:
+          serializedVersion: 2
+          key0: {r: 0.70837605, g: 0.9646866, b: 0.17144115, a: 1}
+          key1: {r: 0.70837605, g: 0.9646866, b: 0.17144115, a: 0}
+          key2: {r: 0, g: 0, b: 0, a: 0}
+          key3: {r: 0, g: 0, b: 0, a: 0}
+          key4: {r: 0, g: 0, b: 0, a: 0}
+          key5: {r: 0, g: 0, b: 0, a: 0}
+          key6: {r: 0, g: 0, b: 0, a: 0}
+          key7: {r: 0, g: 0, b: 0, a: 0}
+          ctime0: 0
+          ctime1: 65535
+          ctime2: 0
+          ctime3: 0
+          ctime4: 0
+          ctime5: 0
+          ctime6: 0
+          ctime7: 0
+          atime0: 0
+          atime1: 65535
+          atime2: 65535
+          atime3: 65535
+          atime4: 0
+          atime5: 0
+          atime6: 0
+          atime7: 0
+          m_Mode: 0
+          m_ColorSpace: 1
+          m_NumColorKeys: 2
+          m_NumAlphaKeys: 2
+        m_Name: ColorGradient
+        m_Overridden: 1
     m_NamedObject:
       m_Array: []
     m_Bool:
@@ -498,6 +562,10 @@ PrefabInstance:
     - target: {fileID: 6161946328625622039, guid: f504f393860dbf949bd405ba9e7ffd3d, type: 3}
       propertyPath: m_Name
       value: Particle System
+      objectReference: {fileID: 0}
+    - target: {fileID: 6161946328625622039, guid: f504f393860dbf949bd405ba9e7ffd3d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6740105270870283706, guid: f504f393860dbf949bd405ba9e7ffd3d, type: 3}
       propertyPath: ColorModule.gradient.maxGradient.key0.b

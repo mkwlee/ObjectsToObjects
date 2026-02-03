@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 namespace SpaceGame
@@ -49,11 +50,13 @@ namespace SpaceGame
         public void SetHoldingShoot()
         {
             holdingShoot = true;
+            player.isShootingMachineGun = true;
         }
 
         public void UnsetHoldingShoot()
         {
             holdingShoot = false;
+            player.isShootingMachineGun = false;
         }
     }
 }

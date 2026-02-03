@@ -1,6 +1,11 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SocialPlatforms.Impl;
 
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace SpaceGame
 {
@@ -48,9 +53,9 @@ namespace SpaceGame
             return score;
         }
 
-        public void IncrementScore()
+        public void IncrementScore(int amount = 5)
         {
-            score++;
+            score += amount;
             OnScoreUpdate?.Invoke();
 
             if (score > highScore)
@@ -60,5 +65,24 @@ namespace SpaceGame
             }
         }
     }
+
+        #if UNITY_EDITOR
+            // This will create a button in the Inspector
+
+            // Optional: Draw a proper button in Inspector using this trick
+            [CustomEditor(typeof(ScoreManager))]
+            public class CameraEditor : Editor
+            {
+                public override void OnInspectorGUI()
+                {
+                    base.OnInspectorGUI();
+
+                    if (GUILayout.Button("Reset High Score"))
+                    {
+                        PlayerPrefs.SetInt("HighScore", 0);
+                    }
+                }
+            }
+        #endif
     
 }

@@ -5,9 +5,10 @@ namespace SpaceGame
 {
     public class NukePickup : PickUp, IDamageable
     {
+        [SerializeField] private GameObject nukeEffect;
         public override void OnPicked()
         {
-            GameManager.GetInstance().ActivatecNuke();
+            GameManager.GetInstance().ActivatecNuke(nukeEffect);
             base.OnPicked();
         }
 

@@ -35,7 +35,7 @@ namespace SpaceGame
             GameObject bulletVFX = Instantiate(bulletEffect, transform.position, Quaternion.identity);
             Destroy(bulletVFX, 1f);
 
-            GameManager.GetInstance()?.scoreManager.IncrementScore();
+            GameManager.GetInstance()?.scoreManager.IncrementScore(5);
             Destroy(gameObject);
         }
 

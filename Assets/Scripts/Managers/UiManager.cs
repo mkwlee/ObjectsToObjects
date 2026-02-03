@@ -1,4 +1,3 @@
-using Mono.Cecil.Cil;
 using TMPro;
 using UnityEngine;
 
@@ -46,12 +45,16 @@ namespace SpaceGame
 
         public void UpdateScore()
         {
-            txtScore.SetText(GameManager.GetInstance()?.scoreManager.GetScore().ToString("D4"));
+            txtScore.SetText(GameManager.GetInstance()?.scoreManager.GetScore().ToString("D5"));
         }
 
         public void UpdateHightScore()
         {
-            txtHighScore.SetText("High Score\n" + scoreManager.GetHighScore().ToString("D4"));
+            txtHighScore.SetText(
+                "High Score\n\n<size=72><color=#999999>" +
+                scoreManager.GetHighScore().ToString("D5") +
+                "</color></size>"
+            );
         }
 
         public void PowerUpUIEnabled(int timerValue)

@@ -9,6 +9,10 @@ namespace SpaceGame
         [SerializeField] private int weaponDamage = 1;
         [SerializeField] private int bulletSpeed = 10;
         [SerializeField] private Bullet bulletPrefab;
+        [SerializeField] private Bullet machineGunBulletPrefab;
+        public bool isShootingMachineGun = false;
+        [SerializeField] private AudioSource hurtAudio;
+        [SerializeField] private GameObject deathEffect;
         private Camera cam;
 
         public Action OnDeath;
@@ -45,7 +49,15 @@ namespace SpaceGame
 
         public override void Shoot()
         {
-            weapon.Shoot(bulletPrefab, this, "Damageable");
+            if(isShootingMachineGun)
+            {
+                weapon.Shoot(machineGunBulletPrefab, this, "Damageable");
+            }
+            else
+            {
+                weapon.Shoot(bulletPrefab, this, "Damageable");
+            }
+            GameManager.GetInstance().cameraManager.ShakeCamera(0.5f, 0.1f, 1, 1);
         }
 
         public override void Attack(float interval)
@@ -56,6 +68,8 @@ namespace SpaceGame
         public override void Die()
         {
             Debug.Log($"Player has died.");
+            GameObject deathVFX = Instantiate(deathEffect, transform.position, Quaternion.identity);
+            Destroy(deathVFX, 3f);
             OnDeath?.Invoke();
             Destroy(gameObject);
         }
@@ -64,9 +78,18 @@ namespace SpaceGame
         {
             Debug.Log($"Player took {damage} damage.");
             health.DeductHealth(damage);
+            // if (!hurtAudio.isPlaying)
+            // {
+            hurtAudio.Play();
+            // }
+                
             if (health.GetHealth() <= 0)
             {
+                GameManager.GetInstance().cameraManager.ShakeCamera(1f, 1f, 4, 10);
                 Die();
+            } else
+            {
+                GameManager.GetInstance().cameraManager.ShakeCamera(0.5f, 0.5f, 3, 4);
             }
         }
 

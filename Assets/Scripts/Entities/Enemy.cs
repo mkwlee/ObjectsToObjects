@@ -1,5 +1,4 @@
 using SpaceGame;
-using UnityEditor.Build;
 using UnityEngine;
 using UnityEngine.VFX;
 
@@ -22,7 +21,7 @@ namespace SpaceGame
         [SerializeField] protected AudioSource hitSound;
         protected Transform target;
         protected int speed;
-        private EnemyType enemyType;
+        [SerializeField] private EnemyType enemyType;
 
 
         protected virtual void Start()
@@ -87,7 +86,15 @@ namespace SpaceGame
         {
             GameObject deathVFX = Instantiate(deathEffect, transform.position, Quaternion.identity);
             Destroy(deathVFX, 2.5f);
-
+            if (enemyType == EnemyType.Grenader || enemyType == EnemyType.MachineGunner || enemyType == EnemyType.Charger)
+            {
+                GameManager.GetInstance().scoreManager.IncrementScore(25);
+            }
+            else
+            {
+                GameManager.GetInstance().scoreManager.IncrementScore(15);
+            }
+            
             GameManager.GetInstance().NotifyDeath(this);
             Destroy(gameObject);
         }
@@ -98,7 +105,11 @@ namespace SpaceGame
             hitSound.Play();
             if (health.GetHealth() <= 0)
             {
+                GameManager.GetInstance().cameraManager.ShakeCamera(0.5f, 0.1f, 3, 3);
                 Die();
+            }
+            {
+                GameManager.GetInstance().cameraManager.ShakeCamera(0.5f, 0.1f, 2, 2);
             }
         }
         

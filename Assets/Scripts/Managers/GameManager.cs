@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections;
 using System;
+using SpaceGame;
+using System.Collections.Generic;
 
 namespace SpaceGame
 {
@@ -9,6 +11,9 @@ namespace SpaceGame
         [Header("Game Entities")]
         [SerializeField] private GameObject playerPrefab;
         [SerializeField] private GameObject[] enemyPrefab;
+        [SerializeField] private EnemySpawn[] enemySpawns;
+        private List<GameObject> enemyPool = new List<GameObject>();
+        GameObject chosenEnemy;
         [SerializeField] private Transform[] spawnPosition;
 
         [Header("Game Variables")]
@@ -23,6 +28,7 @@ namespace SpaceGame
         public ScoreManager scoreManager;
 
         public UiManager uiManager;
+        public CameraManager cameraManager;
 
         private Player player;
         private GameObject tempEnemy;
@@ -74,12 +80,23 @@ namespace SpaceGame
 
         public void NotifyDeath(Enemy enemy)
         {
-            pickupManager.SpawnPickup(enemy.transform.position);
+            // scoreManager.IncrementScore(20);
+            StartCoroutine(DelayedPickupSpawn(enemy.transform.position));
+            // pickupManager.SpawnPickup(enemy.transform.position);
+        }
+
+        IEnumerator DelayedPickupSpawn(Vector3 position)
+        {
+            yield return new WaitForSeconds(1f);
+            pickupManager.SpawnPickup(position);
         }
 
         void CreateEnemy()
         {
-            tempEnemy = Instantiate(enemyPrefab[UnityEngine.Random.Range(0, enemyPrefab.Length)]);
+            if (enemyPool.Count <= 0)
+                return;
+            chosenEnemy = enemyPool[UnityEngine.Random.Range(0, enemyPool.Count)];
+            tempEnemy = Instantiate(chosenEnemy);
             tempEnemy.transform.position = spawnPosition[UnityEngine.Random.Range(0, spawnPosition.Length)].position;
             // tempEnemy.GetComponent<Enemy>().weapon = meleeWeapon;
             // tempEnemy.GetComponent<Enemy>().SetEnemyType(EnemyType.Melee);
@@ -111,8 +128,21 @@ namespace SpaceGame
             player.OnDeath += StopGame;
             isPlaying = true;
 
+            SetUpEnemySpawns();
+
             onGameStart?.Invoke();
             StartCoroutine(GameStarter());
+        }
+
+        private void SetUpEnemySpawns()
+        {
+            foreach (EnemySpawn spawn in enemySpawns)
+            {
+                for(int i = 0; i < spawn.spawnWeight; i++)
+                {
+                    enemyPool.Add(spawn.enemy);
+                }
+            }
         }
 
         IEnumerator GameStarter()
@@ -183,14 +213,30 @@ namespace SpaceGame
             powerUpStarted?.Invoke(Mathf.RoundToInt(powerUpTimer)); // Invoke the event to signal that the power-up has started
         }
 
-        public void ActivatecNuke()
+        public void ActivatecNuke(GameObject effect)
         {
             foreach (Enemy item in FindObjectsByType(typeof(Enemy), FindObjectsSortMode.InstanceID))
             {
+                GameObject explosionVFX = Instantiate(effect, item.transform.position, Quaternion.identity);
+                Destroy(explosionVFX, 3.5f);
                 Destroy(item.gameObject); //Not die so you can't chain pickups
-                scoreManager.IncrementScore();
+                scoreManager.IncrementScore(10);
             }
+
+            cameraManager.ShakeCamera(3f, 5f, 8, 7);
+        }
+
+        public void QuitGame()
+        {
+            Application.Quit();
         }
 
     }
+}
+
+[System.Serializable]
+public struct EnemySpawn
+{
+    public GameObject enemy;
+    public int spawnWeight;
 }

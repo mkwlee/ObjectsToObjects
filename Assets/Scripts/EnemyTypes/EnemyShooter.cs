@@ -5,9 +5,8 @@ namespace SpaceGame
     public class EnemyShooter : Enemy
     {
         [Header("Values")]
-        [SerializeField] private float circleRange;
         [SerializeField] private float attackRange;
-        [SerializeField] private float attackTime;
+        [SerializeField] private float attackInterval;
 
         [SerializeField] private Bullet bulletPrefab;
         
@@ -16,7 +15,6 @@ namespace SpaceGame
         enum EnemyStates
         {
             Follow,
-            Circle,
             Shooting
         }
         private EnemyStates enemyState = EnemyStates.Follow;
@@ -37,62 +35,23 @@ namespace SpaceGame
             {
                 case EnemyStates.Follow:
                     base.Update();
-                    if (Vector2.Distance(transform.position, target.position) < circleRange)
+                    if (Vector2.Distance(transform.position, target.position) < attackRange)
                     {
-                        enemyState = EnemyStates.Circle;
-                        timer = 0;
+                        enemyState = EnemyStates.Shooting;
                     }
                     break;
-                case EnemyStates.Circle:
-                    if (Vector2.Distance(transform.position, target.position) < circleRange-2)
+                case EnemyStates.Shooting:
+                    base.Update();
+                    if (timer > attackInterval)
                     {
-                        base.Update();
-                    }
-                    CircleMovement(target.position);
-                    if (Vector2.Distance(transform.position, target.position) > circleRange)
-                    {
-                        enemyState = EnemyStates.Follow;
-                    }
-
-                    if (timer > 1)
-                    {
-                        // enemyState = EnemyStates.Shooting;
                         Shoot();
                         timer = 0;
                     }
                     break;
-                // case EnemyStates.Shooting:
-                //     if (timer > 1)
-                //     {
-                //         Shoot();
-                //     }
-                //     break;
+
             }
-
-            // base.Update();
-
-            
-
-            // if (Vector2.Distance(transform.position, target.position) < attackRange)
-            // {
-            //     speed = 0;
-            //     Shoot();
-            // }
-            // else
-            // {
-            //     speed = maxSpeed;
-            // }
         }
 
-        private void CircleMovement(Vector2 _direction)
-        {
-            _direction.x -= transform.position.x;
-            _direction.y -= transform.position.y;
-
-            float angle = Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0, 0, angle - 90);
-            transform.Translate(Vector2.right * speed * Time.deltaTime);
-        }
 
         public override void Shoot()
         {

@@ -5,8 +5,11 @@ namespace SpaceGame
     public enum EnemyType
     {
         Melee,
-        Exploder,
+        Charger,
         Shooter,
-        MachineGunner
+        MachineGunner,
+        Exploder,
+        Grenader
+        
     }
 }
